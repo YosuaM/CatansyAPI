@@ -4,16 +4,12 @@
     <projectFile profileName="http">catansyAPI.csproj</projectFile>
     <projectFile profileName="http">postgres_tests.csproj</projectFile>
   </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="459f357d-8df7-414c-ab7f-ed9cce604a7d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/CatansyAPI.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/CatansyAPI.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CatansyAPI.http" beforeDir="false" afterPath="$PROJECT_DIR$/CatansyAPI.http" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CatansyAPI.sln" beforeDir="false" afterPath="$PROJECT_DIR$/CatansyAPI.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/WeatherForecastController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Properties/launchSettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WeatherForecast.cs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +39,10 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "last_opened_file_path": "/Users/kike/Catansy/CatansyAPI/postgres_tests.sln",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
@@ -97,7 +97,7 @@
       <updated>1705184356617</updated>
       <workItem from="1705184360734" duration="57000" />
       <workItem from="1709062925782" duration="50000" />
-      <workItem from="1723570582535" duration="200000" />
+      <workItem from="1723570582535" duration="806000" />
     </task>
     <servers />
   </component>
