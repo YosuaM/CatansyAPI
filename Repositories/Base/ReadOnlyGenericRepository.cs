@@ -6,9 +6,16 @@ using CatansyAPI.Repositories.Base.Interfaces;
 
 namespace CatansyAPI.Repositories.Base;
 
-public class ReadOnlyGenericRepository<T>(CatansyContext _catansyContext) : IReadOnlyGenericRepository<T> where T : class
+public class ReadOnlyGenericRepository<T> : IReadOnlyGenericRepository<T> where T : class
 {
-    private DbSet<T> _entity => _catansyContext.Set<T>();
+    private readonly CatansyContext _catansyContext1;
+
+    public ReadOnlyGenericRepository(CatansyContext _catansyContext)
+    {
+        _catansyContext1 = _catansyContext;
+    }
+
+    private DbSet<T> _entity => _catansyContext1.Set<T>();
 
     public T? FindFirstOrDefault(Expression<Func<T, bool>> predicate, Expression<Func<T, T>>? select = null) 
         => InitialPredicate(select).FirstOrDefault(predicate);

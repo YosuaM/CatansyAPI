@@ -2,7 +2,7 @@
 
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <InvariantGlobalization>false</InvariantGlobalization>
@@ -10,10 +10,9 @@
 
     <ItemGroup>
       <PackageReference Include="Bogus" Version="35.6.0" />
-      <PackageReference Include="EFCore.BulkExtensions.PostgreSql" Version="8.1.0" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="8.0.7" />
-      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.4" />
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
+      <PackageReference Include="EFCore.BulkExtensions.PostgreSql" Version="6.8.1" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.33" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.29" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
 
     </ItemGroup>

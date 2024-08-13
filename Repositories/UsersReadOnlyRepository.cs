@@ -5,9 +5,12 @@ using CatansyAPI.Repositories.Interfaces;
 
 namespace CatansyAPI.Repositories;
 
-public class UsersReadOnlyRepository(CatansyContext _catansyContext)
-    : ReadOnlyGenericRepository<User>(_catansyContext), IUsersReadOnlyRepository
+public class UsersReadOnlyRepository : ReadOnlyGenericRepository<User>, IUsersReadOnlyRepository
 {
+    public UsersReadOnlyRepository(CatansyContext _catansyContext) : base(_catansyContext)
+    {
+    }
+
     public async Task<User?> SearchUserById(int id) 
         => await FindFirstOrDefaultAsync(x => x.Id == id);
 }

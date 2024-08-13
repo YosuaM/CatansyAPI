@@ -12,12 +12,21 @@ namespace CatansyAPI.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class TestController(CatansyContext _catansyContext, IUsersService _usersService) : ControllerBase
+public class TestController : ControllerBase
 {
+    private readonly CatansyContext _catansyContext1;
+    private readonly IUsersService _usersService1;
+
+    public TestController(CatansyContext _catansyContext, IUsersService _usersService)
+    {
+        _catansyContext1 = _catansyContext;
+        _usersService1 = _usersService;
+    }
+
     [HttpGet("users/all")]
     public async Task<IActionResult> Get()
     {
-        var users = await _catansyContext.Users.AsNoTracking().ToListAsync();
+        var users = await _catansyContext1.Users.AsNoTracking().ToListAsync();
         return Ok(users);
     }
 
@@ -25,15 +34,15 @@ public class TestController(CatansyContext _catansyContext, IUsersService _users
     public async Task<IActionResult> CreateUser(CreateUserRequest req)
     {
         var newUser = Entities.User.CreateUser(req.ToDto());
-        await _catansyContext.Users.AddAsync(newUser);
-        await _catansyContext.SaveChangesAsync();
+        await _catansyContext1.Users.AddAsync(newUser);
+        await _catansyContext1.SaveChangesAsync();
         return Ok(newUser);
     }
 
     [HttpGet("users/{id}")]
     public async Task<IActionResult> LoadUser(int id)
     {
-        var user = await _usersService.SearchUserById(id);
+        var user = await _usersService1.SearchUserById(id);
 
         if (user == null)
         {
@@ -46,7 +55,7 @@ public class TestController(CatansyContext _catansyContext, IUsersService _users
     [HttpPut("users/{id}")]
     public async Task<IActionResult> UpdateUser(int id, UpdateUserRequest req)
     {
-        var user = await _catansyContext.Users.FirstOrDefaultAsync(x => x.Id == id);
+        var user = await _catansyContext1.Users.FirstOrDefaultAsync(x => x.Id == id);
         
         if (user == null) 
         {
@@ -55,13 +64,13 @@ public class TestController(CatansyContext _catansyContext, IUsersService _users
 
         user.UpdateUser(req.ToDto());
 
-        await _catansyContext.SaveChangesAsync();
+        await _catansyContext1.SaveChangesAsync();
         
         return Ok();
     }
     
     [HttpGet("items-categories/all")]
-    public async Task<IActionResult> GetItemsCat() => Ok(await _catansyContext.ItemsCategories.AsNoTracking().ToListAsync());
+    public async Task<IActionResult> GetItemsCat() => Ok(await _catansyContext1.ItemsCategories.AsNoTracking().ToListAsync());
     
     [HttpPost("generate")]
     public async Task<IActionResult> GenerateUsers(int usersToGenerate)
@@ -95,12 +104,10 @@ public class TestController(CatansyContext _catansyContext, IUsersService _users
         
         stopWatch.Start();
         
-        await _catansyContext.BulkInsertAsync(users, config =>
+        await _catansyContext1.BulkInsertAsync(users, config =>
         {
             config.PropertiesToExclude =
-            [
-                "Created"
-            ];
+                new List<string> { "Created" };
         });
         
         stopWatch.Stop();
