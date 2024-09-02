@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatansyAPI.", "CatansyAPI.csproj", "{46A64A42-6525-4FCB-975B-6A98644DC327}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catansy.API", "Catansy.API.csproj", "{46A64A42-6525-4FCB-975B-6A98644DC327}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

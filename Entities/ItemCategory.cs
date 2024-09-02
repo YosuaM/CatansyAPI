@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CatansyAPI.Entities;
+namespace Catansy.API.Entities;
 
 [Table("items_categories")]
 public class ItemCategory

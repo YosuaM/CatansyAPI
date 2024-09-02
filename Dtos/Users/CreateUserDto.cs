@@ -1,3 +1,3 @@
-namespace CatansyAPI.Dtos.Users;
+namespace Catansy.API.Dtos.Users;
 
-public record class CreateUserDto(string Mail, string Password);
+public record CreateUserDto(string Mail, string Password);

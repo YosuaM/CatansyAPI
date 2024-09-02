@@ -3,16 +3,19 @@ using Bogus;
 using EFCore.BulkExtensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using CatansyAPI.Context;
-using CatansyAPI.Entities;
-using CatansyAPI.Models.Requests;
-using CatansyAPI.Services.Interfaces;
+using Catansy.API.Context;
+using Catansy.API.Controllers.Base;
+using Catansy.API.Entities;
+using Catansy.API.Models.Requests;
+using Catansy.API.Models.Requests.Auth;
+using Catansy.API.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
-namespace CatansyAPI.Controllers;
+namespace Catansy.API.Controllers;
 
-[ApiController]
+
 [Route("[controller]")]
-public class TestController : ControllerBase
+public class TestController : CatansyBaseController
 {
     private readonly CatansyContext _catansyContext1;
     private readonly IUsersService _usersService1;
@@ -42,7 +45,7 @@ public class TestController : ControllerBase
     [HttpGet("users/{id}")]
     public async Task<IActionResult> LoadUser(int id)
     {
-        var user = await _usersService1.SearchUserById(id);
+        var user = await _usersService1.SearchUserByIdRO(id);
 
         if (user == null)
         {
@@ -111,7 +114,7 @@ public class TestController : ControllerBase
         });
         
         stopWatch.Stop();
-        Console.WriteLine($"{stopWatch.Elapsed} - Tiempo Insertados en bogus");
+        Console.WriteLine($"{stopWatch.Elapsed} - Tiempo Insertados en db");
         
         return Ok("oko");
     }

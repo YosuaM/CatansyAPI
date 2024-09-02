@@ -1,7 +1,7 @@
-using CatansyAPI.Entities;
-using CatansyAPI.Repositories.Base.Interfaces;
+using Catansy.API.Entities;
+using Catansy.API.Repositories.Base.Interfaces;
 
-namespace CatansyAPI.Repositories.Interfaces;
+namespace Catansy.API.Repositories.Interfaces;
 
 public interface IUsersReadOnlyRepository : IReadOnlyGenericRepository<User>
 {

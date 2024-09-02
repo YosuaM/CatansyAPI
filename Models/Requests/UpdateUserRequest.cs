@@ -1,7 +1,7 @@
 using System;
-using CatansyAPI.Dtos.Users;
+using Catansy.API.Dtos.Users;
 
-namespace CatansyAPI.Models.Requests;
+namespace Catansy.API.Models.Requests;
 
 public class UpdateUserRequest
 {

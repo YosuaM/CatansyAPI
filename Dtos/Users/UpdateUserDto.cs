@@ -1,3 +1,3 @@
-namespace CatansyAPI.Dtos.Users;
+namespace Catansy.API.Dtos.Users;
 
-public record class UpdateUserDto(string Mail, string Password, bool Banned);
+public record UpdateUserDto(string Mail, string Password, bool Banned);

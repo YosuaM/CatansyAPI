@@ -1,9 +1,9 @@
-using CatansyAPI.Context;
-using CatansyAPI.Entities;
-using CatansyAPI.Repositories.Base;
-using CatansyAPI.Repositories.Interfaces;
+using Catansy.API.Context;
+using Catansy.API.Entities;
+using Catansy.API.Repositories.Base;
+using Catansy.API.Repositories.Interfaces;
 
-namespace CatansyAPI.Repositories;
+namespace Catansy.API.Repositories;
 
 public class UsersReadOnlyRepository : ReadOnlyGenericRepository<User>, IUsersReadOnlyRepository
 {

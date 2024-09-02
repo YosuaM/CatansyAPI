@@ -1,4 +1,4 @@
-namespace CatansyAPI.Dtos.Users;
+namespace Catansy.API.Dtos.Users;
 
 public record UserDto
 {

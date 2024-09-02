@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
-using CatansyAPI.Dtos.Users;
+using Catansy.API.Dtos.Users;
 
-namespace CatansyAPI.Entities;
+namespace Catansy.API.Entities;
 
 [Table("users")]
 public class User
@@ -29,14 +29,25 @@ public class User
     
     [Column("language")]
     public int? Language { get; set; }
+    
+    [Column("deleted")]
+    public bool? Deleted { get; set; }
 
-    public static User CreateUser(CreateUserDto req) =>
+    public bool IsBanned 
+        => Banned.GetValueOrDefault();
+
+    public void UpdateLastAccess()
+        => LastAccess = DateTime.UtcNow;
+    
+    public static User CreateUser(CreateUserDto req, string? password = null) =>
         new()
         {
-            Mail = req.Mail,
+            Mail = req.Mail.ToLower(),
             Uid = Guid.NewGuid().ToString(),
-            Password = req.Password,
-            Created = DateTime.UtcNow
+            Password = password ?? req.Password,
+            Created = DateTime.UtcNow,
+            Banned = false,
+            Deleted = false
         };
 
     public void UpdateUser(UpdateUserDto dto)

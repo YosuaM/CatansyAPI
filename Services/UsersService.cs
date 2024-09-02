@@ -1,21 +1,36 @@
-using CatansyAPI.Dtos.Users;
-using CatansyAPI.Repositories.Interfaces;
-using CatansyAPI.Services.Interfaces;
+using Catansy.API.Dtos.Users;
+using Catansy.API.Entities;
+using Catansy.API.Repositories.Interfaces;
+using Catansy.API.Services.Interfaces;
 
-namespace CatansyAPI.Services;
+namespace Catansy.API.Services;
 
 public class UsersService : IUsersService
 {
-    private readonly IUsersReadOnlyRepository _usersRoRepository1;
+    private readonly IUsersReadOnlyRepository _readOnlyRepository;
+    private readonly IUsersTransactionalRepository _transactionalRepository;
 
-    public UsersService(IUsersReadOnlyRepository _usersRoRepository)
+    public UsersService(IUsersReadOnlyRepository readOnlyRepository, IUsersTransactionalRepository transactionalRepository)
     {
-        _usersRoRepository1 = _usersRoRepository;
+        _readOnlyRepository = readOnlyRepository;
+        _transactionalRepository = transactionalRepository;
     }
 
-    public async Task<UserDto?> SearchUserById(int id)
+    public async Task<UserDto?> SearchUserByIdRO(int id)
     {
-        var user = await _usersRoRepository1.SearchUserById(id);
+        var user = await _readOnlyRepository.SearchUserById(id);
         return user?.ToDto();
     }
+
+    public async Task<bool> UserExistsByMail(string mail) 
+        => await _readOnlyRepository.AnyAsync(x => x.Mail == mail);
+
+    public async Task CreateUser(User user) 
+        => await _transactionalRepository.CreateUser(user);
+
+    public async Task<User?> SearchUserByMail(string mail) 
+        => await _transactionalRepository.SearchUserByMail(mail, includeBanned: true);
+
+    public async Task SaveUser() 
+        => await _transactionalRepository.SaveChangesAsync();
 }

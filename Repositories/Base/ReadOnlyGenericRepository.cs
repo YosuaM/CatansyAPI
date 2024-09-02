@@ -1,16 +1,15 @@
-using System;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
-using CatansyAPI.Context;
-using CatansyAPI.Repositories.Base.Interfaces;
+using Catansy.API.Context;
+using Catansy.API.Repositories.Base.Interfaces;
 
-namespace CatansyAPI.Repositories.Base;
+namespace Catansy.API.Repositories.Base;
 
 public class ReadOnlyGenericRepository<T> : IReadOnlyGenericRepository<T> where T : class
 {
     private readonly CatansyContext _catansyContext1;
 
-    public ReadOnlyGenericRepository(CatansyContext _catansyContext)
+    protected ReadOnlyGenericRepository(CatansyContext _catansyContext)
     {
         _catansyContext1 = _catansyContext;
     }
@@ -28,6 +27,9 @@ public class ReadOnlyGenericRepository<T> : IReadOnlyGenericRepository<T> where 
 
     public async Task<List<T>> WhereAsync(Expression<Func<T, bool>> predicate, Expression<Func<T, T>>? select = null) 
         => await InitialPredicate(select).Where(predicate).ToListAsync();
+
+    public async Task<bool> AnyAsync(Expression<Func<T, bool>> predicate) 
+        => await InitialPredicate().AnyAsync(predicate);
 
     private IQueryable<T> InitialPredicate(Expression<Func<T, T>>? select = null)
     {
